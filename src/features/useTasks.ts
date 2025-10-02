@@ -12,13 +12,13 @@ const initialTasks: ITask[] = [
 
 export function useTasks() {
     const [tasks, setTasks] = useState<ITask[]>(initialTasks);
-    const [filter, setFilter] = useState<string>("");
+    const [filter, setFilter] = useState<Filter>("all");
 
     const deleteTask = (id: string) => {
         setTasks(tasks.filter((task) => task.id !== id));
     };
 
-    const filterTasks = () => {
+    const filterTasks = (): ITask[] => {
         if (filter === "completed") {
             return tasks.filter((task) => task.completed);
         }

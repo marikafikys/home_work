@@ -1,9 +1,9 @@
 import TaskCard from "entities/task/ui/TaskCard";
 import TaskFilter from "features/taskFilter/TaskFilter";
+import { useTasks } from "features/useTasks";
 import React, { useState } from "react";
 import { FilterButton } from "shared/button/ui/FilterButton";
 
-import { useTasks } from "../model/useTasks";
 import s from "./TaskList.module.css";
 
 export default function TaskList() {
