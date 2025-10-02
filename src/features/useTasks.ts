@@ -1,5 +1,5 @@
 import { ITask } from "entities/task/model/types";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 export type Filter = "all" | "completed" | "incomplete";
 
@@ -14,11 +14,25 @@ export function useTasks() {
     const [tasks, setTasks] = useState<ITask[]>(initialTasks);
     const [filter, setFilter] = useState<Filter>("all");
 
-    const deleteTask = (id: string) => {
-        setTasks(tasks.filter((task) => task.id !== id));
-    };
+    const addTask = useCallback((title: string) => {
+        const id = new Date().toString();
 
-    const filterTasks = (): ITask[] => {
+        setTasks((prev) => [...prev, { id, title, completed: false }]);
+    }, []);
+
+    const changeTaskStatus = useCallback((id: string) => {
+        setTasks((prev) =>
+            prev.map((task) =>
+                task.id === id ? { ...task, completed: !task.completed } : task,
+            ),
+        );
+    }, []);
+
+    const deleteTask = useCallback((id: string) => {
+        setTasks((prev) => prev.filter((task) => task.id !== id));
+    }, []);
+
+    const filterTasks = useMemo((): ITask[] => {
         if (filter === "completed") {
             return tasks.filter((task) => task.completed);
         }
@@ -28,12 +42,14 @@ export function useTasks() {
         }
 
         return tasks;
-    };
+    }, [tasks, filter]);
 
     return {
-        tasks: filterTasks(),
-        count: filterTasks().length,
-        setFilter,
+        tasks: filterTasks,
+        count: filterTasks.length,
+        addTask,
+        changeTaskStatus,
         deleteTask,
+        setFilter,
     };
 }
