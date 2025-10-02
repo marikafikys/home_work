@@ -7,23 +7,39 @@ import checkIcon from "/check.png";
 
 interface IProps {
     task: ITask;
-    action: (id: string) => void;
+    changeStatusAction: (id: string) => void;
+    deleteAction: (id: string) => void;
 }
 
-export default function TaskCard({ task, action }: IProps) {
+const TaskCard: React.FC<IProps> = ({
+    task,
+    changeStatusAction,
+    deleteAction,
+}) => {
     const { title, completed } = task;
 
     return (
         <div className={completed ? s.completed : s.task}>
-            <div className={s.title}>
+            <div className={s.block}>
                 {completed && (
                     <img className={s.image} src={checkIcon} alt="check icon" />
                 )}
                 <p>{title}</p>
             </div>
-            <Button onClick={() => action(task.id)} color="danger">
-                Delete
-            </Button>
+            <div className={s.block}>
+                <Button
+                    onClick={() => changeStatusAction(task.id)}
+                    color="primary"
+                >
+                    Change status
+                </Button>
+                <Button onClick={() => deleteAction(task.id)} color="danger">
+                    Delete
+                </Button>
+            </div>
         </div>
     );
-}
+};
+
+// Оборачиваем компонент в React.memo для предотвращения ненужных ререндеров
+export default React.memo(TaskCard);

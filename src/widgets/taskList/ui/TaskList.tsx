@@ -1,14 +1,16 @@
 import TaskCard from "entities/task/ui/TaskCard";
 import TaskFilter from "features/taskFilter/TaskFilter";
+import { useTasks } from "features/useTasks";
 import React, { useState } from "react";
 import { FilterButton } from "shared/button/ui/FilterButton";
+import TaskForm from "widgets/taskForm/ui/TaskForm";
 
-import { useTasks } from "../model/useTasks";
 import s from "./TaskList.module.css";
 
 export default function TaskList() {
     const [isFiltration, setIsFiltration] = useState<boolean>(false);
-    const { tasks, count, setFilter, deleteTask } = useTasks();
+    const { tasks, count, setFilter, addTask, changeTaskStatus, deleteTask } =
+        useTasks();
 
     return (
         <div>
@@ -20,9 +22,15 @@ export default function TaskList() {
                 Filtration
             </FilterButton>
             {isFiltration && <TaskFilter setFilter={setFilter} />}
+            <TaskForm addTask={addTask} />
             <div className={s.tasks}>
                 {tasks.map((task) => (
-                    <TaskCard key={task.id} task={task} action={deleteTask} />
+                    <TaskCard
+                        key={task.id}
+                        task={task}
+                        changeStatusAction={changeTaskStatus}
+                        deleteAction={deleteTask}
+                    />
                 ))}
             </div>
             <p>Total users: {count}</p>
