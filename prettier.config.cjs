@@ -1,0 +1,7 @@
+module.exports = {
+	"tabWidth": 4,
+	"importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  	"importOrderSeparation": true,
+  	"importOrderSortSpecifiers": true,
+   "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}

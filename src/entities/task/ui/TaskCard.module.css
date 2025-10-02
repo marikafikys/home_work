@@ -1,0 +1,32 @@
+.task {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f8b1b1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #91f49a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    width: 25px;
+    height: 25px;
+}
