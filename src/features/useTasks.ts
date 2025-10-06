@@ -15,7 +15,7 @@ export function useTasks() {
     const [filter, setFilter] = useState<Filter>("all");
 
     const addTask = useCallback((title: string) => {
-        const id = new Date().toString();
+        const id = crypto.randomUUID();
 
         setTasks((prev) => [...prev, { id, title, completed: false }]);
     }, []);
