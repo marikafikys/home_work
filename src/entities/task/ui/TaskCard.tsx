@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Button } from "shared/button/ui/Button";
 
 import { ITask } from "../model/types";
@@ -7,23 +7,43 @@ import checkIcon from "/check.png";
 
 interface IProps {
     task: ITask;
-    action: (id: string) => void;
+    changeStatusAction: (id: string) => void;
+    deleteAction: (id: string) => void;
 }
 
-export default function TaskCard({ task, action }: IProps) {
+const TaskCard: React.FC<IProps> = ({
+    task,
+    changeStatusAction,
+    deleteAction,
+}) => {
     const { title, completed } = task;
+
+    const handleChangeStatus = useCallback(() => {
+        changeStatusAction(task.id);
+    }, [changeStatusAction, task.id]);
+
+    const handleDelete = useCallback(() => {
+        deleteAction(task.id);
+    }, [deleteAction, task.id]);
 
     return (
         <div className={completed ? s.completed : s.task}>
-            <div className={s.title}>
+            <div className={s.block}>
                 {completed && (
                     <img className={s.image} src={checkIcon} alt="check icon" />
                 )}
                 <p>{title}</p>
             </div>
-            <Button onClick={() => action(task.id)} color="danger">
-                Delete
-            </Button>
+            <div className={s.block}>
+                <Button onClick={handleChangeStatus} color="primary">
+                    Change status
+                </Button>
+                <Button onClick={handleDelete} color="danger">
+                    Delete
+                </Button>
+            </div>
         </div>
     );
-}
+};
+
+export default React.memo(TaskCard);
