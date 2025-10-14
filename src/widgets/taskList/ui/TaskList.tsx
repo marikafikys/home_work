@@ -9,7 +9,7 @@ import s from "./TaskList.module.css";
 
 export default function TaskList() {
     const [isFiltration, setIsFiltration] = useState<boolean>(false);
-    const { tasks, count, setFilter, addTask, changeTaskStatus, deleteTask } =
+    const { tasks, count, setFilter, addTask, changeTaskStatus, removeTask } =
         useTasks();
 
     return (
@@ -29,11 +29,11 @@ export default function TaskList() {
                         key={task.id}
                         task={task}
                         changeStatusAction={changeTaskStatus}
-                        deleteAction={deleteTask}
+                        deleteAction={removeTask}
                     />
                 ))}
             </div>
-            <p>Total users: {count}</p>
+            <p>Total tasks: {count}</p>
         </div>
     );
 }

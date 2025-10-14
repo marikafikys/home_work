@@ -1,26 +1,28 @@
+import { useGetTasksQuery } from "entities/task/api/taskApi";
 import { ITask } from "entities/task/model/types";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export type Filter = "all" | "completed" | "incomplete";
 
-const initialTasks: ITask[] = [
-    { id: "1", title: "To do homework", completed: true },
-    { id: "2", title: "Reading book", completed: true },
-    { id: "3", title: "Yoga class", completed: false },
-    { id: "4", title: "Shopping", completed: false },
-];
-
 export function useTasks() {
-    const [tasks, setTasks] = useState<ITask[]>(initialTasks);
+    const [tasks, setTasks] = useState<ITask[]>([]);
     const [filter, setFilter] = useState<Filter>("all");
 
+    const { data: remoteTasks = [] } = useGetTasksQuery();
+
+    useEffect(() => {
+        if (remoteTasks.length > 0 && tasks.length === 0) {
+            setTasks(remoteTasks);
+        }
+    }, [remoteTasks, tasks.length]);
+
     const addTask = useCallback((title: string) => {
-        const id = crypto.randomUUID();
+        const id = crypto.getRandomValues(new Uint32Array(1))[0];
 
         setTasks((prev) => [...prev, { id, title, completed: false }]);
     }, []);
 
-    const changeTaskStatus = useCallback((id: string) => {
+    const changeTaskStatus = useCallback((id: number) => {
         setTasks((prev) =>
             prev.map((task) =>
                 task.id === id ? { ...task, completed: !task.completed } : task,
@@ -28,7 +30,7 @@ export function useTasks() {
         );
     }, []);
 
-    const deleteTask = useCallback((id: string) => {
+    const removeTask = useCallback((id: number) => {
         setTasks((prev) => prev.filter((task) => task.id !== id));
     }, []);
 
@@ -49,7 +51,7 @@ export function useTasks() {
         count: filterTasks.length,
         addTask,
         changeTaskStatus,
-        deleteTask,
+        removeTask,
         setFilter,
     };
 }

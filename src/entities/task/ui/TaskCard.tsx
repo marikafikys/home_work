@@ -7,8 +7,8 @@ import checkIcon from "/check.png";
 
 interface IProps {
     task: ITask;
-    changeStatusAction: (id: string) => void;
-    deleteAction: (id: string) => void;
+    changeStatusAction: (id: number) => void;
+    deleteAction: (id: number) => void;
 }
 
 const TaskCard: React.FC<IProps> = ({
