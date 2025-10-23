@@ -1,4 +1,4 @@
-import { hasOwnProperty, isPlainObject } from './common';
+import { hasOwnProperty, isPlainObject } from "./common";
 
 export interface SaveToLS {
     state: unknown;
@@ -6,7 +6,11 @@ export interface SaveToLS {
     subTitle?: string;
 }
 
-export const saveToLocaleStorage = ({ state, key, subTitle }: SaveToLS): void => {
+export const saveToLocaleStorage = ({
+    state,
+    key,
+    subTitle,
+}: SaveToLS): void => {
     try {
         if (subTitle) {
             const prevDataByKey = loadFromLS<Record<string, unknown>>({ key });
@@ -40,7 +44,8 @@ export const loadFromLS = <T>({ key, subTitle }: LoadFromLS): T | undefined => {
             if (subTitle) {
                 const parsedData = JSON.parse(serializedState);
                 const returnData =
-                    isPlainObject(parsedData) && hasOwnProperty(parsedData, subTitle)
+                    isPlainObject(parsedData) &&
+                    hasOwnProperty(parsedData, subTitle)
                         ? parsedData[subTitle]
                         : undefined;
 
@@ -71,7 +76,10 @@ export const clearLS = ({ key, subTitle }: ClearLS): void => {
             if (subTitle) {
                 const parsedData = JSON.parse(serializedState);
 
-                if (isPlainObject(parsedData) && hasOwnProperty(parsedData, subTitle)) {
+                if (
+                    isPlainObject(parsedData) &&
+                    hasOwnProperty(parsedData, subTitle)
+                ) {
                     delete parsedData[subTitle];
                     saveToLocaleStorage({ key, state: parsedData });
                 }
