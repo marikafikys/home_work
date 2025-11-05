@@ -25,6 +25,15 @@ export const Header: FC = () => {
                     <Link href="/ref" sx={{ mx: 1 }}>
                         RefExamples
                     </Link>
+                    <Link href="/login" sx={{ mx: 1 }}>
+                        Login
+                    </Link>
+                    <Link href="/profile" sx={{ mx: 1 }}>
+                        Profile
+                    </Link>
+                    <Link href="/public" sx={{ mx: 1 }}>
+                        Public
+                    </Link>
                 </Box>
             </Toolbar>
         </AppBar>
