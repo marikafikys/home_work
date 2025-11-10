@@ -6,7 +6,7 @@ export const formHandler = <T extends object>(values: T) => {
                 if (rnd > 0.3) {
                     resolve(values);
                 } else {
-                    reject(new Error('Something goes wrong'));
+                    reject(new Error("Something goes wrong"));
                 }
             },
             1e3 + Math.random() * 1e3,

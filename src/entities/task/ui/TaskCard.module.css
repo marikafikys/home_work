@@ -1,29 +1,29 @@
 .task {
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     margin-bottom: 1rem;
     background: #f8b1b1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .completed {
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     margin-bottom: 1rem;
     background: #91f49a;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .block {
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
 }
 
 .image {
