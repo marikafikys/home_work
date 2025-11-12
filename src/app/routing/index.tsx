@@ -4,6 +4,7 @@ import AuthPage from "pages/Auth/ui/AuthPage";
 import HomePage from "pages/Home/ui/HomePage";
 import { LoginPage } from "pages/Login";
 import NotFoundPage from "pages/NotFound/ui/NotFoundPage";
+import { PortalShowcasePage } from "pages/PortalShowcase";
 import { ProfilePage } from "pages/Profile";
 import { PublicPage } from "pages/Public";
 import RefExamplesPage from "pages/RefExamples/ui/RefExamples";
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: "public",
                 element: <PublicPage />,
+            },
+            {
+                path: "portal",
+                element: <PortalShowcasePage />,
             },
             {
                 path: "ref",
