@@ -1,5 +1,5 @@
-import type { ComponentType } from 'react';
-import { Bounce, ToastContainer } from 'react-toastify';
+import type { ComponentType } from "react";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export const withToastify = (WrappedComponent: ComponentType) => () => (
     <>

@@ -1,49 +1,78 @@
 {
-  "name": "homework",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@hookform/resolvers": "^5.2.2",
-    "@mui/icons-material": "^7.3.4",
-    "@mui/material": "^7.3.4",
-    "@reduxjs/toolkit": "^2.9.0",
-    "@tanstack/react-query": "^5.90.5",
-    "formik": "^2.4.6",
-    "ky": "^1.13.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-hook-form": "^7.65.0",
-    "react-redux": "^9.2.0",
-    "react-router": "^7.9.4",
-    "react-toastify": "^11.0.5",
-    "yup": "^1.7.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.36.0",
-    "@feature-sliced/steiger-plugin": "^0.5.7",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/css-modules": "^1.0.5",
-    "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.3",
-    "eslint": "^9.36.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.4.0",
-    "prettier": "^3.6.2",
-    "steiger": "^0.5.11",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.44.0",
-    "vite": "^7.1.7",
-    "vite-tsconfig-paths": "^5.1.4"
-  }
+    "name": "homework",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "build:check": "vite-bundle-visualizer -c ./vite.config.js",
+        "fix:eslint": "eslint --fix ./src --max-warnings 0",
+        "fix:prettier": "prettier --ignore-path .gitignore \"./src/**/*.{ts,tsx,scss,sass,css,md,mdx}\" --write",
+        "fix:stylelint": "stylelint --fix \"./src/**/*.{scss,sass,css}\"",
+        "fix:all": "npm run fix:eslint && npm run fix:prettier && npm run fix:stylelint",
+        "preview": "vite preview",
+        "pre-commit": "lint-staged",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "src/**/*.{ts,tsx}": [
+            "npm run fix:eslint"
+        ],
+        "src/**/*.{ts,tsx,scss,sass,css,md,mdx}": [
+            "npm run fix:prettier"
+        ],
+        "src/**/*.{scss,sass,css}": [
+            "npm run fix:stylelint"
+        ]
+    },
+    "dependencies": {
+        "@emotion/react": "11.14.0",
+        "@emotion/styled": "11.14.1",
+        "@hookform/resolvers": "5.2.2",
+        "@marikafikys/react-utils": "^0.0.2",
+        "@mui/icons-material": "7.3.4",
+        "@mui/material": "7.3.4",
+        "@reduxjs/toolkit": "2.9.0",
+        "@tanstack/react-query": "5.90.5",
+        "formik": "2.4.6",
+        "ky": "1.13.0",
+        "react": "19.1.1",
+        "react-dom": "19.1.1",
+        "react-hook-form": "7.65.0",
+        "react-redux": "9.2.0",
+        "react-router": "7.9.4",
+        "react-toastify": "11.0.5",
+        "yup": "1.7.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "9.36.0",
+        "@feature-sliced/steiger-plugin": "0.5.7",
+        "@trivago/prettier-plugin-sort-imports": "5.2.2",
+        "@types/css-modules": "1.0.5",
+        "@types/node": "^24.10.0",
+        "@types/react": "19.1.13",
+        "@types/react-dom": "19.1.9",
+        "@vitejs/plugin-react": "5.0.3",
+        "eslint": "9.36.0",
+        "eslint-plugin-react-hooks": "5.2.0",
+        "eslint-plugin-react-refresh": "0.4.20",
+        "globals": "16.4.0",
+        "husky": "9.1.7",
+        "lint-staged": "^16.2.6",
+        "prettier": "3.6.2",
+        "steiger": "0.5.11",
+        "stylelint": "16.25.0",
+        "stylelint-config-recess-order": "7.4.0",
+        "stylelint-config-standard": "39.0.1",
+        "stylelint-config-standard-scss": "16.0.0",
+        "stylelint-order": "7.0.0",
+        "stylelint-prettier": "5.0.3",
+        "typescript": "~5.8.3",
+        "typescript-eslint": "8.44.0",
+        "vite": "7.1.7",
+        "vite-bundle-visualizer": "1.2.1",
+        "vite-plugin-checker": "0.11.0",
+        "vite-tsconfig-paths": "5.1.4"
+    }
 }
