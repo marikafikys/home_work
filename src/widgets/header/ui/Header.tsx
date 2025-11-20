@@ -34,6 +34,9 @@ export const Header: FC = () => {
                     <Link href="/public" sx={{ mx: 1 }}>
                         Public
                     </Link>
+                    <Link href="/portal" sx={{ mx: 1 }}>
+                        PortalShowcase
+                    </Link>
                 </Box>
             </Toolbar>
         </AppBar>
